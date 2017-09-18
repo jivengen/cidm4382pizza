@@ -1,0 +1,27 @@
+extends layout
+
+include _includes/sharedHTMLfunctions
+
+block content
+  #banner.page-header
+    .row
+      .col-lg-6
+        h1= pageHeader.title
+         small &nbsp;#{pageHeader.strapline}
+  .row
+    .col-xs-12.col-sm-8
+      .row.list-group
+        each pizza in pizzas
+          .col-xs-12.list-group-item
+            h4 
+              a(href="/pizza/info")= pizza.name
+              small &nbsp;
+                +outputRating(pizza.rating)
+              span.badge.pull-right.badge-default= pizza.distance
+            p.address= pizza.address
+            p
+              each facility in pizza.facilities
+                span.label.label-warning= facility
+                &nbsp;
+    .col-xs-12.col-sm-4 
+      p.lead= sidebar
